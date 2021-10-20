@@ -1,5 +1,3 @@
 import { Snake } from "./snake";
 
-export {
-    Snake,
-}
+export { Snake };

@@ -1,5 +1,3 @@
 import { Rectangle } from "./rectangle";
 
-export {
-    Rectangle
-}
+export { Rectangle };

@@ -1,11 +1,11 @@
-const CELLS_WIDTH = 20
-const CELLS_HEIGHT = 20
+const CELLS_WIDTH = 20;
+const CELLS_HEIGHT = 20;
 
-function grid(): {x: number, y: number}[] {
-    const grid = []
-    for (let i = 0; i < CELLS_HEIGHT; i++){
+function grid(): { x: number; y: number }[] {
+    const grid = [];
+    for (let i = 0; i < CELLS_HEIGHT; i++) {
         for (let j = 0; j < CELLS_WIDTH; j++) {
-            grid.push({x: j, y: i})
+            grid.push({ x: j, y: i });
         }
     }
     return grid;
@@ -20,5 +20,5 @@ export const GameConstants = {
     FOOD_COLOR: "#ff406e",
     CELLS_WIDTH: CELLS_WIDTH,
     CELLS_HEIGHT: CELLS_HEIGHT,
-    GRID: grid()
-}
+    GRID: grid(),
+};
