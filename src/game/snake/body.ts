@@ -98,4 +98,15 @@ export class Body extends Rectangle
     {
         return this.x === body.x && this.y === body.y;
     }
+
+    /**
+     * @description Draws the rectangle.
+     *
+     * @param ctx Canvas where rectangle must me drown.
+     * */
+    draw(ctx: CanvasRenderingContext2D) {
+        ctx.fillStyle=this.color;
+        ctx.fillRect(this.x * GameConstants.SQUARE_WIDTH,this.y * GameConstants.SQUARE_WIDTH,
+            this.width,this.height);
+    }
 }

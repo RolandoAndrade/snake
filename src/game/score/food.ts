@@ -1,6 +1,7 @@
 import {Rectangle} from "../../shapes";
 import {Snake} from "../snake";
 import {GameConstants} from "../game";
+import {shuffle} from "../../utils";
 
 /**
  * @class Food
@@ -20,16 +21,15 @@ export class Food extends Rectangle
      * */
     generate()
     {
-        let collide = false;
-        do
-        {
-            this.x = (Math.floor(Math.floor(Math.random() * GameConstants.BOARD_WIDTH) / GameConstants.SQUARE_WIDTH)) * GameConstants.SQUARE_WIDTH;
-            this.y = (Math.floor(Math.floor(Math.random() * GameConstants.BOARD_HEIGHT) / GameConstants.SQUARE_WIDTH)) * GameConstants.SQUARE_WIDTH;
-            for (let i = 0; i < this.snake.body.length && !collide; i++)
-            {
-                collide = this.snake.body[i].collision(this);
-            }
-        } while (collide)
+        let grid = GameConstants.GRID;
+        for (const part of this.snake.body) {
+            grid = grid.filter((g)=>g.x!=part.x||g.y!=part.y)
+        }
+        if (grid.length){
+            const newPosition = shuffle(grid)[0];
+            this.x = newPosition.x;
+            this.y = newPosition.y
+        }
     }
 
     /**
@@ -44,5 +44,16 @@ export class Food extends Rectangle
             return true;
         }
         return false;
+    }
+
+    /**
+     * @description Draws the rectangle.
+     *
+     * @param ctx Canvas where rectangle must me drown.
+     * */
+    draw(ctx: CanvasRenderingContext2D) {
+        ctx.fillStyle=this.color;
+        ctx.fillRect(this.x * GameConstants.SQUARE_WIDTH,this.y * GameConstants.SQUARE_WIDTH,
+            this.width,this.height);
     }
 }

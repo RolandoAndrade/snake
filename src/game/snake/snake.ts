@@ -20,7 +20,7 @@ export class Snake
         this.isAlive = true;
         for (let i = 0; i < 4; i++)
         {
-            this.snake.push(new Body(100 - GameConstants.SQUARE_WIDTH * i, 100, GameConstants.SNAKE_VELOCITY, 0));
+            this.snake.push(new Body(6, 6, GameConstants.SNAKE_VELOCITY, 0));
         }
         document.addEventListener("keydown",  (e) =>
         {
@@ -50,7 +50,6 @@ export class Snake
             const lastPositionAndVelocity = bodyPart.getPositionAndVelocity()
             bodyPart.forward(positionAndVelocity);
             positionAndVelocity = lastPositionAndVelocity;
-            console.log({positionAndVelocity}, {lastPositionAndVelocity})
             this.checkCollision(bodyPart)
         }
         this.killOutside();
@@ -73,7 +72,7 @@ export class Snake
      * */
     killOutside()
     {
-        if (this.head.x < 0 || this.head.x >= GameConstants.BOARD_WIDTH || this.head.y < 0 || this.head.y >= GameConstants.BOARD_HEIGHT)
+        if (this.head.x < 0 || this.head.x >= GameConstants.CELLS_WIDTH || this.head.y < 0 || this.head.y >= GameConstants.CELLS_HEIGHT)
         {
             this.kill();
         }
@@ -96,7 +95,6 @@ export class Snake
         if (body != this.head) {
             if (this.head.collision(body))
             {
-                console.log("killed by collision")
                 this.kill();
             }
         }
