@@ -3,5 +3,6 @@ export const GameConstants = {
     BOARD_WIDTH: 400,
     BOARD_HEIGHT: 400,
     SNAKE_COLOR: "#71ebff",
-    SNAKE_VELOCITY: 20
+    SNAKE_VELOCITY: 20,
+    FOOD_COLOR: "#ff406e",
 }

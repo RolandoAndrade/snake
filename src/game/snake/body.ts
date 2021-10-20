@@ -2,6 +2,11 @@ import {Rectangle} from "../../shapes";
 import {GameConstants} from "../game";
 import {PositionAndVelocity} from "./position-and-velocity";
 
+/**
+ * @class Body
+ *
+ * Body's part of the snake.
+ * */
 export class Body extends Rectangle
 {
     constructor(x: number, y: number, private velocityX: number, private velocityY: number)
@@ -9,6 +14,9 @@ export class Body extends Rectangle
         super(x, y, GameConstants.SQUARE_WIDTH, GameConstants.SQUARE_WIDTH, GameConstants.SNAKE_COLOR);
     }
 
+    /**
+     * @description Gets the current params of the body part
+     * */
     getPositionAndVelocity(): PositionAndVelocity {
         return {
             x: this.x,
@@ -18,13 +26,19 @@ export class Body extends Rectangle
         }
     }
 
+    /**
+     * @description Moves to the next state.
+     * @param positionAndVelocity Position and velocity of the last part.
+     * */
     forward(positionAndVelocity: PositionAndVelocity = this.getPositionAndVelocity())
     {
         super.move(positionAndVelocity.x + positionAndVelocity.velocityX,
             positionAndVelocity.y + positionAndVelocity.velocityY);
     }
 
-
+    /**
+     * @description Up movement.
+     * */
     up()
     {
         if (this.velocityY === 0)
@@ -34,6 +48,9 @@ export class Body extends Rectangle
         }
     }
 
+    /**
+     * @description Down movement.
+     * */
     down()
     {
         if (this.velocityY === 0)
@@ -43,6 +60,9 @@ export class Body extends Rectangle
         }
     }
 
+    /**
+     * @description Left movement.
+     * */
     left()
     {
         if (this.velocityX === 0)
@@ -52,6 +72,9 @@ export class Body extends Rectangle
         }
     }
 
+    /**
+     * @description Right movement.
+     * */
     right()
     {
         if (this.velocityX === 0)
@@ -61,7 +84,10 @@ export class Body extends Rectangle
         }
     }
 
-    collision(body: Body)
+    /**
+     * @description Checks if the body collides with itself.
+     * */
+    collision(body: Rectangle)
     {
         return this.x === body.x && this.y === body.y;
     }

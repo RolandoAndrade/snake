@@ -1,13 +1,18 @@
-
-
-class Score
+export class Score
 {
+    private score: number
+
     constructor()
     {
         this.score = 0;
     }
 
-    draw()
+    /**
+     * @description Draws the rectangle.
+     *
+     * @param ctx Canvas where rectangle must me drown.
+     * */
+    draw(ctx: CanvasRenderingContext2D)
     {
         ctx.textAlign = "center";
         ctx.font ='250px Arial, sans-serif';
@@ -17,6 +22,9 @@ class Score
         ctx.fillText("Rolando Andrade",200,320);
     }
 
+    /**
+     * @description Adds one to the score.
+     * */
     add()
     {
         this.score++;

@@ -1,16 +1,18 @@
 import {Rectangle} from "../../shapes";
 import {Snake} from "../snake";
+import {Food, Score} from "../score";
 
 export class Game {
     private gameOver: boolean
     private background: Rectangle
     private snake: Snake
+    private food: Food
+    private score: Score
 
     constructor(private ctx: CanvasRenderingContext2D)
     {
         this.gameOver = true;
         this.background = new Rectangle(0,0,400,400, "#424242");
-        this.background.draw(ctx);
         document.addEventListener("keydown", (e)=>
         {
             if((e.keyCode === 32 || e.keyCode === 13) && this.gameOver)
@@ -20,6 +22,9 @@ export class Game {
         })
     }
 
+    /**
+     * @description Initialize the board params.
+     * */
     init()
     {
         this.snake = new Snake();
@@ -28,28 +33,32 @@ export class Game {
         this.gameOver = false;
     }
 
+
+    /**
+     * @description Game loop.
+     * */
     loop()
     {
+        this.background.draw(this.ctx);
         if(!this.gameOver)
         {
-            this.background.draw();
-            this.score.draw();
-            this.snake.draw();
-            if(this.food.got())
+            this.snake.move();
+            if(this.food.wasEaten())
             {
                 this.score.add();
             }
-            this.food.draw();
+            this.score.draw(this.ctx);
+            this.snake.draw(this.ctx);            this.food.draw(this.ctx);
             this.gameOver = !this.snake.alive;
         }
         else
         {
-            ctx.textAlign = "center";
-            ctx.font ='50px Arial, sans-serif';
-            ctx.fillStyle="#fff13d";
-            ctx.fillText("GAME OVER",200,200);
-            ctx.font ='15px Arial, sans-serif';
-            ctx.fillText("Presiona ENTER para empezar",200,250);
+            this.ctx.textAlign = "center";
+            this.ctx.font ='50px Arial, sans-serif';
+            this.ctx.fillStyle="#fff13d";
+            this.ctx.fillText("GAME OVER",200,200);
+            this.ctx.font ='15px Arial, sans-serif';
+            this.ctx.fillText("Press ENTER to start",200,250);
         }
     }
 }

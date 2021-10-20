@@ -21,7 +21,7 @@ export class Rectangle
     /**
      * @description Draws the rectangle.
      *
-     * @param ctx Canvas where rectangle must me drawed.
+     * @param ctx Canvas where rectangle must me drown.
      * */
     draw(ctx: CanvasRenderingContext2D)
     {

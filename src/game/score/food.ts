@@ -1,34 +1,43 @@
-class Food extends Rectangle
+import {Rectangle} from "../../shapes";
+import {Snake} from "../snake";
+import {GameConstants} from "../game";
+
+/**
+ * @class Food
+ *
+ * Food element added to the score where is eaten by the player.
+ * */
+export class Food extends Rectangle
 {
-    constructor(snake)
+    constructor(private snake: Snake)
     {
-        super(0, 0, SQUARE_WIDTH, SQUARE_WIDTH, "#ff406e");
-        this.snake = snake;
+        super(0, 0, GameConstants.SQUARE_WIDTH, GameConstants.SQUARE_WIDTH, GameConstants.FOOD_COLOR);
         this.generate();
     }
 
+    /**
+     * @description Generates a new food element.
+     * */
     generate()
     {
-        let snake = this.snake.snake;
-        while (true)
+        let collide = false;
+        while (!collide)
         {
-            this.x = (Math.floor(Math.floor(Math.random() * 400) / 20)) * 20;
-            this.y = (Math.floor(Math.floor(Math.random() * 400) / 20)) * 20;
-            let b = false;
-            for (let i = 0; i < snake.length && !b; i++)
+            this.x = (Math.floor(Math.floor(Math.random() * GameConstants.BOARD_WIDTH) / GameConstants.SQUARE_WIDTH)) * 20;
+            this.y = (Math.floor(Math.floor(Math.random() * GameConstants.BOARD_HEIGHT) / GameConstants.SQUARE_WIDTH)) * 20;
+            for (let i = 0; i < this.snake.body.length && !collide; i++)
             {
-                b = snake[i].collision(this);
-            }
-            if (!b)
-            {
-                break;
+                collide = this.snake.body[i].collision(this);
             }
         }
     }
 
-    got()
+    /**
+     * @description Identifies if the food was eaten by the snake.
+     * */
+    wasEaten(): boolean
     {
-        if (this.snake.snake[0].collision(this))
+        if (this.snake.body[0].collision(this))
         {
             this.snake.growUp();
             this.generate();
