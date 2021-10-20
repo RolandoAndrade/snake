@@ -21,15 +21,15 @@ export class Food extends Rectangle
     generate()
     {
         let collide = false;
-        while (!collide)
+        do
         {
-            this.x = (Math.floor(Math.floor(Math.random() * GameConstants.BOARD_WIDTH) / GameConstants.SQUARE_WIDTH)) * 20;
-            this.y = (Math.floor(Math.floor(Math.random() * GameConstants.BOARD_HEIGHT) / GameConstants.SQUARE_WIDTH)) * 20;
+            this.x = (Math.floor(Math.floor(Math.random() * GameConstants.BOARD_WIDTH) / GameConstants.SQUARE_WIDTH)) * GameConstants.SQUARE_WIDTH;
+            this.y = (Math.floor(Math.floor(Math.random() * GameConstants.BOARD_HEIGHT) / GameConstants.SQUARE_WIDTH)) * GameConstants.SQUARE_WIDTH;
             for (let i = 0; i < this.snake.body.length && !collide; i++)
             {
                 collide = this.snake.body[i].collision(this);
             }
-        }
+        } while (collide)
     }
 
     /**

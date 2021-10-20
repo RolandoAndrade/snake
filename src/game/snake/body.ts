@@ -30,10 +30,17 @@ export class Body extends Rectangle
      * @description Moves to the next state.
      * @param positionAndVelocity Position and velocity of the last part.
      * */
-    forward(positionAndVelocity: PositionAndVelocity = this.getPositionAndVelocity())
+    forward(positionAndVelocity: PositionAndVelocity = undefined)
     {
-        super.move(positionAndVelocity.x + positionAndVelocity.velocityX,
-            positionAndVelocity.y + positionAndVelocity.velocityY);
+        if (!positionAndVelocity) {
+            super.move(this.x + this.velocityX,
+                this.y + this.velocityY);
+        } else {
+            super.move(positionAndVelocity.x, positionAndVelocity.y);
+            this.velocityX = positionAndVelocity.x;
+            this.velocityY = positionAndVelocity.y
+        }
+
     }
 
     /**

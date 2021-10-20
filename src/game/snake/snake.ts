@@ -45,11 +45,12 @@ export class Snake
      * @description Moves the snake and checks the collisions.
      * */
     move() {
-        let positionAndVelocity = this.head.getPositionAndVelocity();
+        let positionAndVelocity = undefined;
         for (const bodyPart of this.snake) {
             const lastPositionAndVelocity = bodyPart.getPositionAndVelocity()
             bodyPart.forward(positionAndVelocity);
             positionAndVelocity = lastPositionAndVelocity;
+            console.log({positionAndVelocity}, {lastPositionAndVelocity})
             this.checkCollision(bodyPart)
         }
         this.killOutside();
@@ -95,6 +96,7 @@ export class Snake
         if (body != this.head) {
             if (this.head.collision(body))
             {
+                console.log("killed by collision")
                 this.kill();
             }
         }
@@ -107,8 +109,8 @@ export class Snake
     growUp()
     {
         const positionAndVelocity = this.tail.getPositionAndVelocity()
-        this.snake.push(new Body(positionAndVelocity.x - positionAndVelocity.velocityX,
-            positionAndVelocity.y - positionAndVelocity.velocityY, positionAndVelocity.velocityX, positionAndVelocity.velocityY))
+        this.snake.push(new Body(positionAndVelocity.x,
+            positionAndVelocity.y, positionAndVelocity.velocityX, positionAndVelocity.velocityY))
     }
 
 

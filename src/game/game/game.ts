@@ -48,7 +48,8 @@ export class Game {
                 this.score.add();
             }
             this.score.draw(this.ctx);
-            this.snake.draw(this.ctx);            this.food.draw(this.ctx);
+            this.snake.draw(this.ctx);
+            this.food.draw(this.ctx);
             this.gameOver = !this.snake.alive;
         }
         else

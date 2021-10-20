@@ -23,7 +23,8 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "./src/templates/index.html")
+            template: path.resolve(__dirname, "./src/templates/index.html"),
+            inject: false
         })
     ],
     devtool: "inline-source-map",
