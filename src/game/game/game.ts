@@ -1,17 +1,21 @@
+import {Rectangle} from "../../shapes";
+import {Snake} from "../snake";
+
 export class Game {
     private gameOver: boolean
-    private background:
-    constructor()
+    private background: Rectangle
+    private snake: Snake
+
+    constructor(private ctx: CanvasRenderingContext2D)
     {
         this.gameOver = true;
         this.background = new Rectangle(0,0,400,400, "#424242");
-        this.background.draw();
-        let game = this;
-        document.addEventListener("keydown", function (e)
+        this.background.draw(ctx);
+        document.addEventListener("keydown", (e)=>
         {
-            if((e.keyCode === 32 || e.keyCode === 13) && game.gameOver)
+            if((e.keyCode === 32 || e.keyCode === 13) && this.gameOver)
             {
-                game.init();
+                this.init();
             }
         })
     }
@@ -51,11 +55,4 @@ export class Game {
 }
 
 
-let game = new Game();
 
-function loop()
-{
-    game.loop();
-}
-
-let interval = window.setInterval(loop,100);

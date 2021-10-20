@@ -1,27 +1,45 @@
-class Rectangle
+/**
+ * @class Rectangle
+ *
+ * Canvas Rectangle
+ * */
+export class Rectangle
 {
-    constructor(x,y,width, height, color, borderColor, lineWidth)
+    constructor(public x: number,
+                public y: number,
+                public width: number,
+                public height: number,
+                public color: string,
+                public borderColor: string = undefined,
+                public lineWidth: number = undefined)
     {
-        this.x=x;
-        this.y=y;
-        this.w=width;
-        this.h=height;
         this.color=color;
         this.borderColor=borderColor?borderColor:color;
         this.lineWidth=lineWidth?lineWidth:0;
     }
-    draw()
+
+    /**
+     * @description Draws the rectangle.
+     *
+     * @param ctx Canvas where rectangle must me drawed.
+     * */
+    draw(ctx: CanvasRenderingContext2D)
     {
         ctx.fillStyle=this.color;
-        ctx.fillRect(this.x,this.y,this.w,this.h);
-        ctx.borderColor=this.borderColor;
+        ctx.fillRect(this.x,this.y,this.width,this.height);
         ctx.lineWidth = this.lineWidth;
         ctx.strokeStyle = this.borderColor;
         ctx.stroke();
         ctx.closePath();
 
     }
-    move(x,y)
+
+    /**
+     * @description Moves the rectangle.
+     * @param x New X position.
+     * @param y New Y position.
+     * */
+    move(x: number,y: number)
     {
         this.x=x;
         this.y=y;
