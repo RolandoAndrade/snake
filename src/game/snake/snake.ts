@@ -1,5 +1,5 @@
 import { Body } from "./body";
-import { GameConstants } from "../game";
+import { GameConstants, InputKey, InputManager } from "../game";
 
 /**
  * @class Snake
@@ -18,21 +18,11 @@ export class Snake {
         for (let i = 0; i < 4; i++) {
             this.snake.push(new Body(6, 6, GameConstants.SNAKE_VELOCITY, 0));
         }
-        document.addEventListener("keydown", (e) => {
-            switch (e.keyCode) {
-                case 37:
-                    this.head.left();
-                    break;
-                case 38:
-                    this.head.up();
-                    break;
-                case 39:
-                    this.head.right();
-                    break;
-                case 40:
-                    this.head.down();
-            }
-        });
+
+        InputManager.keyPressed(InputKey.LEFT, this.head.left.bind(this.head));
+        InputManager.keyPressed(InputKey.RIGHT, this.head.right.bind(this.head));
+        InputManager.keyPressed(InputKey.UP, this.head.up.bind(this.head));
+        InputManager.keyPressed(InputKey.DOWN, this.head.down.bind(this.head));
     }
 
     /**

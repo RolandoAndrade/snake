@@ -1,6 +1,8 @@
 import { Rectangle } from "../../shapes";
 import { Snake } from "../snake";
 import { Food, Score } from "../score";
+import { InputManager } from "./input-manager";
+import { InputKey } from "./input-key";
 
 export class Game {
     private gameOver: boolean;
@@ -12,8 +14,8 @@ export class Game {
     constructor(private ctx: CanvasRenderingContext2D) {
         this.gameOver = true;
         this.background = new Rectangle(0, 0, 400, 400, "#424242");
-        document.addEventListener("keydown", (e) => {
-            if ((e.keyCode === 32 || e.keyCode === 13) && this.gameOver) {
+        InputManager.keyPressed(InputKey.ENTER, () => {
+            if (this.gameOver) {
                 this.init();
             }
         });
