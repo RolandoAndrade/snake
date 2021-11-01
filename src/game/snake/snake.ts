@@ -8,9 +8,9 @@ import { GameConstants, InputKey, InputManager } from "../game";
  * */
 export class Snake {
     /// Body of the snake
-    private readonly snake: Body[];
+    protected readonly snake: Body[];
 
-    private isAlive: boolean;
+    protected isAlive: boolean;
 
     constructor() {
         this.snake = [];

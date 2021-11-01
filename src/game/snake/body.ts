@@ -8,7 +8,7 @@ import { PositionAndVelocity } from "./position-and-velocity";
  * Body's part of the snake.
  * */
 export class Body extends Rectangle {
-    constructor(x: number, y: number, private velocityX: number, private velocityY: number) {
+    constructor(x: number, y: number, protected velocityX: number, protected velocityY: number) {
         super(x, y, GameConstants.SQUARE_WIDTH, GameConstants.SQUARE_WIDTH, GameConstants.SNAKE_COLOR);
     }
 

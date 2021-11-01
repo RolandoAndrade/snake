@@ -9,7 +9,7 @@ import { shuffle } from "../../utils";
  * Food element added to the score where is eaten by the player.
  * */
 export class Food extends Rectangle {
-    constructor(private snake: Snake) {
+    constructor(protected snake: Snake) {
         super(0, 0, GameConstants.SQUARE_WIDTH, GameConstants.SQUARE_WIDTH, GameConstants.FOOD_COLOR);
         this.generate();
     }

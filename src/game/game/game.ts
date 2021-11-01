@@ -5,13 +5,13 @@ import { InputManager } from "./input-manager";
 import { InputKey } from "./input-key";
 
 export class Game {
-    private gameOver: boolean;
-    private background: Rectangle;
-    private snake: Snake;
-    private food: Food;
-    private score: Score;
+    protected gameOver: boolean;
+    protected background: Rectangle;
+    protected snake: Snake;
+    protected food: Food;
+    protected score: Score;
 
-    constructor(private ctx: CanvasRenderingContext2D) {
+    constructor(protected ctx: CanvasRenderingContext2D) {
         this.gameOver = true;
         this.background = new Rectangle(0, 0, 400, 400, "#424242");
         InputManager.keyPressed(InputKey.ENTER, () => {
